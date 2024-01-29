@@ -7,10 +7,10 @@ console.log(mode, ' ', process.env.PORT, ' ', process.env.port)
 const commonConfig = merge([
   { entry: ['./src'] },
   parts.page(),
-  parts.extractCSS()
+  parts.extractCSS({loaders:[parts.tailwind()]})
 ])
 
-const productionConfig = merge([])
+const productionConfig = merge([parts.eliminateUnusedCSS()])
 
 const developmentConfig = merge([
   { entry: ['webpack-plugin-serve/client'] },
