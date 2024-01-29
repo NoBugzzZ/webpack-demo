@@ -11,11 +11,11 @@ module.exports = {
   plugins: [
     new MiniHtmlWebpackPlugin({
       context: {
-        title: 'webpack-demoooo~'
+        title: 'webpack-demo QvQ'
       }
     }),
     new WebpackPluginServe({
-      port: parseInt(process.env.PORT, 10) || 8080,
+      port: parseInt(process.env.PORT, 10) || 8888,
       static: './dist',
       liveReload: true,
       waitForBuild: true,

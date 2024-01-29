@@ -1,3 +1,3 @@
 import component from "./component";
 
-document.body.appendChild(component('fuck webpack'))
+document.body.appendChild(component('hello, webpack'))
