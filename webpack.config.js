@@ -4,7 +4,11 @@ const parts = require('./webpack.parts')
 
 console.log(mode, ' ', process.env.PORT, ' ', process.env.port)
 
-const commonConfig = merge([{ entry: ['./src'] }, parts.page()])
+const commonConfig = merge([
+  { entry: ['./src'] },
+  parts.page(),
+  parts.loadCSS()
+])
 
 const productionConfig = merge([])
 

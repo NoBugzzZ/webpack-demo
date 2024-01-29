@@ -23,3 +23,9 @@ module.exports.page = ({ title } = { title: 'hello~~~' }) => ({
     })
   ]
 })
+
+module.exports.loadCSS = () => ({
+  module: {
+    rules: [{ test: /.css$/, use: ['style-loader', 'css-loader'] }]
+  }
+})
