@@ -7,7 +7,7 @@ console.log(mode, ' ', process.env.PORT, ' ', process.env.port)
 const commonConfig = merge([
   { entry: ['./src'] },
   parts.page(),
-  parts.extractCSS({loaders:[parts.tailwind()]})
+  parts.extractCSS({ loaders: [parts.autoprefixer(), parts.tailwind()] })
 ])
 
 const productionConfig = merge([parts.eliminateUnusedCSS()])
