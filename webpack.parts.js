@@ -38,7 +38,8 @@ exports.extractCSS = ({ loaders = [], options = {} } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.css$/, use: [
+        test: /\.css$/,
+        use: [
           { loader: MiniCssExtractPlugin.loader, options },
           'css-loader'
         ].concat(loaders),
@@ -48,7 +49,7 @@ exports.extractCSS = ({ loaders = [], options = {} } = {}) => ({
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: '[name].css'
     })
   ]
 })
@@ -62,7 +63,7 @@ exports.tailwind = () => ({
   }
 })
 
-const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"))
+const ALL_FILES = glob.sync(path.join(__dirname, 'src/*.js'))
 exports.eliminateUnusedCSS = () => ({
   plugins: [
     new PurgeCSSPlugin({
@@ -71,9 +72,18 @@ exports.eliminateUnusedCSS = () => ({
         {
           extractor: (content) =>
             content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
-          extensions: ["html"],
-        },
-      ],
+          extensions: ['html']
+        }
+      ]
     })
   ]
+})
+
+exports.autoprefixer = () => ({
+  loader: 'postcss-loader',
+  options: {
+    postcssOptions: {
+      plugins: [require('autoprefixer')()]
+    }
+  }
 })
