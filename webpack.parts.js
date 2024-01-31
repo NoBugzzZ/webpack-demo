@@ -87,3 +87,15 @@ exports.autoprefixer = () => ({
     }
   }
 })
+
+exports.loadImages = ({ limit = 4 * 1024 } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg)$/,
+        type: 'asset',
+        parser: { dataUrlCondition: { maxSize: limit } }
+      }
+    ]
+  }
+})
