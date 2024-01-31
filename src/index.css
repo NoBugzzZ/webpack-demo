@@ -4,6 +4,9 @@
 
 body {
   background-color: cornsilk;
+  background-image: url('./业务综合分析.png');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .p{
