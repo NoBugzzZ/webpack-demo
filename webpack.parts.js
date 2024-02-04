@@ -95,6 +95,10 @@ exports.loadImages = ({ limit = 4 * 1024 } = {}) => ({
         test: /\.(png|jpg)$/,
         type: 'asset',
         parser: { dataUrlCondition: { maxSize: limit } }
+      },
+      {
+        test: /\.svg$/,
+        type: 'asset'
       }
     ]
   }
