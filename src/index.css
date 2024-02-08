@@ -12,4 +12,8 @@ body {
 .p{
   background-color: red;
   color: white;
+  background-image: url('./041_榜单.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
 }
