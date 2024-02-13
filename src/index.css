@@ -9,11 +9,21 @@ body {
   background-position: center;
 }
 
-.p{
+.p {
   background-color: red;
   color: white;
   background-image: url('./041_榜单.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
+}
+
+.font {
+  background-color: aqua;
+  font-family: 'DemoFont';
+}
+
+@font-face {
+  font-family: 'DemoFont';
+  src: url("./ProtestRevolution-Regular.ttf");
 }

@@ -2,13 +2,14 @@ const { mode } = require('webpack-nano/argv')
 const { merge } = require('webpack-merge')
 const parts = require('./webpack.parts')
 
-console.log(mode, ' ', process.env.PORT, ' ', process.env.port)
+// console.log(mode, ' ', process.env.PORT, ' ', process.env.port)
 
 const commonConfig = merge([
   { entry: ['./src'] },
   parts.page(),
   parts.extractCSS({ loaders: [parts.autoprefixer(), parts.tailwind()] }),
-  parts.loadImages({ limit: 7281 })
+  parts.loadImages({ limit: 7281 }),
+  parts.loadFont()
 ])
 
 const productionConfig = merge([parts.eliminateUnusedCSS()])

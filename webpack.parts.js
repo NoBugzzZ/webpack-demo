@@ -103,3 +103,14 @@ exports.loadImages = ({ limit = 4 * 1024 } = {}) => ({
     ]
   }
 })
+
+exports.loadFont = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        type: "asset/resource",
+      }
+    ]
+  }
+})
