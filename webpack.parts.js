@@ -103,13 +103,23 @@ exports.loadImages = ({ limit = 4 * 1024 } = {}) => ({
     ]
   }
 })
-
 exports.loadFont = () => ({
   module: {
     rules: [
       {
         test: /\.(ttf|eot|woff|woff2)$/,
         type: "asset/resource",
+      }
+    ]
+  }
+})
+exports.loadJS = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        include: path.join(__dirname, 'src')
       }
     ]
   }
