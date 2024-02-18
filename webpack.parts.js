@@ -124,3 +124,7 @@ exports.loadJS = () => ({
     ]
   }
 })
+
+module.exports.generateSourceMaps = ({ type }) => ({
+  devtool: type
+})

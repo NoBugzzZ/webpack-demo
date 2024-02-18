@@ -13,11 +13,16 @@ const commonConfig = merge([
   parts.loadJS(),
 ])
 
-const productionConfig = merge([parts.eliminateUnusedCSS()])
+const productionConfig = merge([
+  parts.eliminateUnusedCSS(),
+  parts.generateSourceMaps({ type: 'source-map' })
+])
 
 const developmentConfig = merge([
   { entry: ['webpack-plugin-serve/client'] },
-  parts.devServe()
+  parts.devServe(),
+  parts.generateSourceMaps({ type: 'inline-cheap-module-source-map' }),
+  { optimization: { chunkIds: 'named', moduleIds: 'named' } }
 ])
 
 const getConfig = (mode) => {
