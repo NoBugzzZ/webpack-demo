@@ -34,5 +34,18 @@ export default (text = 'hello webpack') => {
   font.innerHTML = 'hello'
   el.appendChild(font)
 
+  const button = document.createElement('div')
+  button.innerHTML = 'click me'
+  button.className = 'rounded bg-red-50 border max-w-md m-4 p-4'
+  button.onclick = () => {
+    import('./lazy')
+      .then((lazy) => {
+        console.log(lazy)
+        button.textContent=lazy.default
+      })
+      .catch((e) => console.log(e))
+  }
+  el.appendChild(button)
+
   return el
 }
