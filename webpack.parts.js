@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 const glob = require('glob')
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports.devServe = () => ({
   watch: true,
@@ -108,7 +109,7 @@ exports.loadFont = () => ({
     rules: [
       {
         test: /\.(ttf|eot|woff|woff2)$/,
-        type: "asset/resource",
+        type: 'asset/resource'
       }
     ]
   }
@@ -127,4 +128,26 @@ exports.loadJS = () => ({
 
 module.exports.generateSourceMaps = ({ type }) => ({
   devtool: type
+})
+
+exports.bundleSpliting = () => ({
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        common: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'initial'
+        }
+      }
+    }
+  }
+})
+
+exports.attachRevision=()=>({
+  plugins:[
+    new webpack.BannerPlugin({
+      banner:'hello world'
+    })
+  ]
 })

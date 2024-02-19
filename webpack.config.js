@@ -7,14 +7,14 @@ const path = require('path')
 
 const commonConfig = merge([
   {
-    // entry: ['./src'],
-    entry:{
-      app:{
-        import:path.join(__dirname,'src','index.js'),
-        dependOn:"vendor"
-      },
-      vendor:['react','react-dom']
-    },
+    entry: ['./src'],
+    // entry:{
+    //   app:{
+    //     import:path.join(__dirname,'src','index.js'),
+    //     dependOn:"vendor"
+    //   },
+    //   vendor:['react','react-dom']
+    // },
     output: {
       chunkFilename: 'chunk.[id].js',
       clean: true
@@ -31,19 +31,8 @@ const commonConfig = merge([
 const productionConfig = merge([
   parts.eliminateUnusedCSS(),
   parts.generateSourceMaps({ type: 'source-map' }),
-  // {
-  //   optimization: {
-  //     splitChunks: {
-  //       cacheGroups: {
-  //         common: {
-  //           test: /[\\/]node_modules[\\/]/,
-  //           name: 'vendor',
-  //           chunks: 'initial'
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+  parts.bundleSpliting(),
+  parts.attachRevision()
 ])
 
 const developmentConfig = merge([
