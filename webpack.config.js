@@ -18,26 +18,37 @@ const commonConfig = merge([
     output: {
       chunkFilename: 'chunk.[id].js',
       clean: true
-    },
-    stats: {
-      optimizationBailout: true
     }
   },
   parts.page(),
   parts.extractCSS({ loaders: [parts.autoprefixer(), parts.tailwind()] }),
   parts.loadImages({ limit: 7281 }),
   parts.loadFont(),
-  parts.loadJS(),
-  { optimization: { chunkIds: 'named', moduleIds: 'named' } }
+  parts.loadJS()
 ])
 
 const productionConfig = merge([
+  {
+    stats: {
+      optimizationBailout: true,
+      usedExports: true,
+      // preset:'verbose'
+    }
+  },
   parts.eliminateUnusedCSS(),
-  parts.generateSourceMaps({ type: 'source-map' }),
+  parts.generateSourceMaps({ type: 'cheap-module-source-map' }),
   parts.bundleSpliting(),
   parts.attachRevision(),
   parts.minifyJs(),
-  parts.minifyCss({ options: { preset: ['default'] } })
+  parts.minifyCss({ options: { preset: ['default'] } }),
+  { optimization: { chunkIds: 'named', moduleIds: 'named' } },
+  // {
+  //   optimization: {
+  //     usedExports: true,
+  //     minimize: false,
+  //     concatenateModules: false
+  //   }
+  // }
 ])
 
 const developmentConfig = merge([
