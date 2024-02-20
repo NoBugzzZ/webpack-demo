@@ -5,6 +5,8 @@ const path = require('path')
 const glob = require('glob')
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
 const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports.devServe = () => ({
   watch: true,
@@ -144,10 +146,26 @@ exports.bundleSpliting = () => ({
   }
 })
 
-exports.attachRevision=()=>({
-  plugins:[
+exports.attachRevision = () => ({
+  plugins: [
     new webpack.BannerPlugin({
-      banner:'hello world'
+      banner: 'hello world'
     })
   ]
+})
+
+exports.minifyJs = () => ({
+  optimization: {
+    minimizer: [new TerserPlugin()]
+  }
+})
+
+exports.minifyCss = ({ options }) => ({
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin({
+        minimizerOptions: options
+      })
+    ]
+  }
 })

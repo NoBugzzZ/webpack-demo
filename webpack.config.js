@@ -18,6 +18,9 @@ const commonConfig = merge([
     output: {
       chunkFilename: 'chunk.[id].js',
       clean: true
+    },
+    stats: {
+      optimizationBailout: true
     }
   },
   parts.page(),
@@ -32,13 +35,15 @@ const productionConfig = merge([
   parts.eliminateUnusedCSS(),
   parts.generateSourceMaps({ type: 'source-map' }),
   parts.bundleSpliting(),
-  parts.attachRevision()
+  parts.attachRevision(),
+  parts.minifyJs(),
+  parts.minifyCss({ options: { preset: ['default'] } })
 ])
 
 const developmentConfig = merge([
   { entry: ['webpack-plugin-serve/client'] },
   parts.devServe(),
-  parts.generateSourceMaps({ type: 'inline-cheap-module-source-map' })
+  parts.generateSourceMaps({ type: 'inline-source-map' })
 ])
 
 const getConfig = (mode) => {
