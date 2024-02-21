@@ -16,8 +16,11 @@ const commonConfig = merge([
     //   vendor:['react','react-dom']
     // },
     output: {
-      chunkFilename: 'chunk.[id].js',
-      clean: true
+      // path:path.join(__dirname,'build'),
+      clean: true,
+      chunkFilename: 'chunk.[name].[contenthash].js',
+      filename:'[name].[contenthash].js',
+      assetModuleFilename:'asset.[name].[contenthash][ext][query]'
     }
   },
   parts.page(),

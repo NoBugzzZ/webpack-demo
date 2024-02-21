@@ -52,7 +52,7 @@ exports.extractCSS = ({ loaders = [], options = {} } = {}) => ({
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: 'sytle.[name].[contenthash].css'
     })
   ]
 })

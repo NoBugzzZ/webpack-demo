@@ -11,11 +11,12 @@ body {
 
 .p {
   background-color: red;
-  color: white;
+  color: ghostwhite;
   background-image: url('./041_榜单.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
+  border: 1px;
 }
 
 .font {
