@@ -19,8 +19,8 @@ const commonConfig = merge([
       // path:path.join(__dirname,'build'),
       clean: true,
       chunkFilename: 'chunk.[name].[contenthash].js',
-      filename:'[name].[contenthash].js',
-      assetModuleFilename:'asset.[name].[contenthash][ext][query]'
+      filename: '[name].[contenthash].js',
+      assetModuleFilename: 'asset.[name].[contenthash][ext][query]'
     }
   },
   parts.page(),
@@ -40,12 +40,12 @@ const productionConfig = merge([
     }
   },
   parts.eliminateUnusedCSS(),
-  parts.generateSourceMaps({ type: 'cheap-module-source-map' }),
+  parts.generateSourceMaps({ type: 'source-map' }),
   parts.bundleSpliting(),
   parts.attachRevision(),
   parts.minifyJs(),
   parts.minifyCss({ options: { preset: ['default'] } }),
-  { optimization: { chunkIds: 'named', moduleIds: 'named' } }
+  { optimization: { chunkIds: 'named', moduleIds: 'named' } },
   // {
   //   optimization: {
   //     usedExports: true,
@@ -53,6 +53,8 @@ const productionConfig = merge([
   //     concatenateModules: false
   //   }
   // }
+  { optimization: { splitChunks: { chunks: 'all', }, runtimeChunk: { name: 'runtime' } } },
+  {recordsPath:path.join(__dirname,'records.json')}
 ])
 
 const developmentConfig = merge([
