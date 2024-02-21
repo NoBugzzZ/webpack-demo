@@ -24,14 +24,15 @@ const commonConfig = merge([
   parts.extractCSS({ loaders: [parts.autoprefixer(), parts.tailwind()] }),
   parts.loadImages({ limit: 7281 }),
   parts.loadFont(),
-  parts.loadJS()
+  parts.loadJS(),
+  parts.setEnvVariable({ key: 'ENV', value: 'xixi' }, mode)
 ])
 
 const productionConfig = merge([
   {
     stats: {
       optimizationBailout: true,
-      usedExports: true,
+      usedExports: true
       // preset:'verbose'
     }
   },
@@ -41,7 +42,7 @@ const productionConfig = merge([
   parts.attachRevision(),
   parts.minifyJs(),
   parts.minifyCss({ options: { preset: ['default'] } }),
-  { optimization: { chunkIds: 'named', moduleIds: 'named' } },
+  { optimization: { chunkIds: 'named', moduleIds: 'named' } }
   // {
   //   optimization: {
   //     usedExports: true,
@@ -54,7 +55,7 @@ const productionConfig = merge([
 const developmentConfig = merge([
   { entry: ['webpack-plugin-serve/client'] },
   parts.devServe(),
-  parts.generateSourceMaps({ type: 'inline-source-map' })
+  parts.generateSourceMaps({ type: 'source-map' })
 ])
 
 const getConfig = (mode) => {

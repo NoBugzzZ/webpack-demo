@@ -1,4 +1,5 @@
 import src from './业务综合分析.png'
+import store from './store'
 
 async function test(t = '113') {
   console.log(t, '1')
@@ -12,7 +13,7 @@ async function test(t = '113') {
   console.log('2')
 }
 
-export default (text = 'hello webpack') => {
+export default (text = ENV) => {
   test()
 
   console.log(text)
@@ -41,11 +42,16 @@ export default (text = 'hello webpack') => {
     import('./lazy')
       .then((lazy) => {
         console.log(lazy)
-        button.textContent=lazy.default
+        button.textContent = lazy.default
       })
       .catch((e) => console.log(e))
   }
   el.appendChild(button)
+
+  console.log(store)
+  const env = document.createElement('p')
+  env.innerHTML = store
+  el.appendChild(env)
 
   return el
 }

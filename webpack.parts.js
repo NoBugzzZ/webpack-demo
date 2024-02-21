@@ -169,3 +169,12 @@ exports.minifyCss = ({ options }) => ({
     ]
   }
 })
+
+exports.setEnvVariable = ({ key, value }, NODE_ENV) => ({
+  plugins: [
+    new webpack.DefinePlugin({
+      [key]: JSON.stringify(value),
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
+    })
+  ]
+})
