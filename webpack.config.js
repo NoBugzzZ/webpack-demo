@@ -53,8 +53,21 @@ const productionConfig = merge([
   //     concatenateModules: false
   //   }
   // }
-  { optimization: { splitChunks: { chunks: 'all', }, runtimeChunk: { name: 'runtime' } } },
-  {recordsPath:path.join(__dirname,'records.json')}
+  {
+    optimization: {
+      splitChunks: { chunks: 'all' },
+      runtimeChunk: { name: 'runtime' }
+    }
+  },
+  { recordsPath: path.join(__dirname, 'records.json') },
+  { profile: true },
+  {
+    performance: {
+      hints: 'warning',
+      maxEntrypointSize: 50000,
+      maxAssetSize: 100000
+    }
+  }
 ])
 
 const developmentConfig = merge([
