@@ -2,6 +2,7 @@ const { mode } = require('webpack-nano/argv')
 const { merge } = require('webpack-merge')
 const parts = require('./webpack.parts')
 const path = require('path')
+const webpack = require('webpack')
 
 // console.log(mode, ' ', process.env.PORT, ' ', process.env.port)
 
@@ -76,6 +77,12 @@ const developmentConfig = merge([
   parts.generateSourceMaps({ type: 'source-map' })
 ])
 
+const analyzeConfig = merge([
+  productionConfig,
+  parts.bundleAnalyzer(),
+  { plugins: [new webpack.ProgressPlugin()] }
+])
+
 const getConfig = (mode) => {
   switch (mode) {
     case 'none':
@@ -83,6 +90,8 @@ const getConfig = (mode) => {
       return merge(commonConfig, productionConfig, { mode })
     case 'development':
       return merge(commonConfig, developmentConfig, { mode })
+    case 'analyze':
+      return merge(commonConfig, analyzeConfig, { mode: 'production' })
     default:
       throw new Error(`unknown mode: ${mode}`)
   }

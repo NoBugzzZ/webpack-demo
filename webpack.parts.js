@@ -7,6 +7,7 @@ const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
 const webpack = require('webpack')
 const TerserPlugin = require('terser-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const BundleAnalyzerPlugin=require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports.devServe = () => ({
   watch: true,
@@ -176,5 +177,11 @@ exports.setEnvVariable = ({ key, value }, NODE_ENV) => ({
       [key]: JSON.stringify(value),
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
     })
+  ]
+})
+
+exports.bundleAnalyzer=()=>({
+  plugins:[
+    new BundleAnalyzerPlugin()
   ]
 })
