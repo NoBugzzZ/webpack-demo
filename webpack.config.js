@@ -29,7 +29,8 @@ const commonConfig = merge([
   parts.loadImages({ limit: 7281 }),
   parts.loadFont(),
   parts.loadJS(),
-  parts.setEnvVariable({ key: 'ENV', value: 'xixi' }, mode)
+  parts.setEnvVariable({ key: 'ENV', value: 'xixi' }, mode),
+  parts.bundleSpliting()
 ])
 
 const productionConfig = merge([
@@ -42,7 +43,7 @@ const productionConfig = merge([
   },
   parts.eliminateUnusedCSS(),
   parts.generateSourceMaps({ type: 'source-map' }),
-  parts.bundleSpliting(),
+  // parts.bundleSpliting(),
   parts.attachRevision(),
   parts.minifyJs(),
   parts.minifyCss({ options: { preset: ['default'] } }),
@@ -74,13 +75,29 @@ const productionConfig = merge([
 const developmentConfig = merge([
   { entry: ['webpack-plugin-serve/client'] },
   parts.devServe(),
-  parts.generateSourceMaps({ type: 'source-map' })
+  parts.generateSourceMaps({ type: 'source-map' }),
+  // {
+  //   cache: {
+  //     type: 'filesystem',
+  //     buildDependencies: {
+  //       config: [__filename]
+  //     }
+  //   }
+  // },
+  parts.dontParse({
+    name: 'react',
+    path: path.resolve(
+      __dirname,
+      'node_modules/react/cjs/react.production.min.js'
+    )
+  })
 ])
 
 const analyzeConfig = merge([
   productionConfig,
-  parts.bundleAnalyzer(),
-  { plugins: [new webpack.ProgressPlugin()] }
+  // parts.bundleAnalyzer(),
+  { plugins: [new webpack.ProgressPlugin()] },
+  { plugins: [new webpack.debug.ProfilingPlugin()] }
 ])
 
 const getConfig = (mode) => {
