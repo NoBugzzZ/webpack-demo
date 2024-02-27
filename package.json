@@ -14,7 +14,9 @@
     "build:analyze": "wp --mode analyze",
     "build:multi": "wp --mode production --config webpack.multi.js",
     "build:ssr": "wp --config webpack.ssr.js",
-    "server":"node ./server.js"
+    "server": "node ./server.js",
+    "build:mf": "wp --config webpack.mf.js --mode production",
+    "start:mf": "wp --config webpack.mf.js --mode development"
   },
   "keywords": [],
   "author": "",

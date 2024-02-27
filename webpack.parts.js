@@ -9,6 +9,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { ModuleFederationPlugin } = require('webpack').container
 
 module.exports.devServe = () => ({
   watch: true,
@@ -198,3 +199,23 @@ exports.dontParse = ({ name, path }) => ({
     }
   }
 })
+
+exports.federateModule = ({
+  name,
+  filename,
+  exposes,
+  remotes,
+  shared,
+}) => (
+  {
+    plugins: [
+      new ModuleFederationPlugin({
+        name,
+        filename,
+        exposes,
+        remotes,
+        shared,
+      })
+    ]
+  }
+)

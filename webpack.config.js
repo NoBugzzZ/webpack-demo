@@ -43,7 +43,7 @@ const productionConfig = merge([
   },
   parts.eliminateUnusedCSS(),
   parts.generateSourceMaps({ type: 'source-map' }),
-  // parts.bundleSpliting(),
+  parts.bundleSpliting(),
   parts.attachRevision(),
   parts.minifyJs(),
   parts.minifyCss({ options: { preset: ['default'] } }),
