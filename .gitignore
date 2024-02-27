@@ -3,3 +3,4 @@ dist/*
 records.json
 stats.json
 events.json
+static/*

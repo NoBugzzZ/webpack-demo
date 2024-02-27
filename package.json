@@ -12,7 +12,9 @@
     "clean": "rimraf ./dist",
     "build:stats": "wp --mode production --json > stats.json",
     "build:analyze": "wp --mode analyze",
-    "build:multi":"wp --mode production --config webpack.multi.js"
+    "build:multi": "wp --mode production --config webpack.multi.js",
+    "build:ssr": "wp --config webpack.ssr.js",
+    "server":"node ./server.js"
   },
   "keywords": [],
   "author": "",
@@ -20,10 +22,12 @@
   "devDependencies": {
     "@babel/core": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
     "autoprefixer": "^10.4.17",
     "babel-loader": "^9.1.3",
     "css-loader": "^6.9.1",
     "css-minimizer-webpack-plugin": "^6.0.0",
+    "express": "^4.18.2",
     "glob": "^10.3.10",
     "mini-css-extract-plugin": "^2.7.7",
     "mini-html-webpack-plugin": "^3.1.3",
