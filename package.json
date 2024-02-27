@@ -11,7 +11,8 @@
     "watch": "nodemon --watch \"./webpack.*.*\" --exec \"npm run start\"",
     "clean": "rimraf ./dist",
     "build:stats": "wp --mode production --json > stats.json",
-    "build:analyze": "wp --mode analyze"
+    "build:analyze": "wp --mode analyze",
+    "build:multi":"wp --mode production --config webpack.multi.js"
   },
   "keywords": [],
   "author": "",
