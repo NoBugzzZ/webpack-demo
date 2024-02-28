@@ -16,7 +16,8 @@
     "build:ssr": "wp --config webpack.ssr.js",
     "server": "node ./server.js",
     "build:mf": "wp --config webpack.mf.js --mode production",
-    "start:mf": "wp --config webpack.mf.js --mode development"
+    "start:mf": "wp --config webpack.mf.js --mode development",
+    "build:i18n": "wp --config webpack.i18n.js"
   },
   "keywords": [],
   "author": "",
