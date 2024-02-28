@@ -69,6 +69,11 @@ const productionConfig = merge([
       maxEntrypointSize: 50000,
       maxAssetSize: 100000
     }
+  },
+  {
+    output: {
+      publicPath: "/webpack-demo/"
+    }
   }
 ])
 
