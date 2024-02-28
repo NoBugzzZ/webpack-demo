@@ -68,5 +68,16 @@ export default (text = ENV) => {
     console.log(module)
   })
 
+  const worker = new Worker(new URL('./worker.js', import.meta.url))
+  const webWorkerBtn = document.createElement('button')
+  webWorkerBtn.innerHTML = 'web worker'
+  webWorkerBtn.onclick = () => {
+    worker.postMessage({ name: 'worker' + Math.floor(Math.random() * 100) })
+  }
+  worker.addEventListener('message', ({ data: { greeting } }) => {
+    webWorkerBtn.innerHTML = greeting
+  })
+  el.appendChild(webWorkerBtn)
+
   return el
 }
