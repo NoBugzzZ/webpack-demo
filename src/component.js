@@ -1,5 +1,7 @@
 import src from './业务综合分析.png'
 import store from './store'
+import sum from 'utils/sum'
+import multiple from 'utils/multiple'
 
 async function test(t = '113') {
   console.log(t, '1')
@@ -78,6 +80,11 @@ export default (text = ENV) => {
     webWorkerBtn.innerHTML = greeting
   })
   el.appendChild(webWorkerBtn)
+
+  console.log(store)
+  const resolve = document.createElement('p')
+  resolve.innerHTML = sum(4, 6) + ' ' + multiple(4, 6)
+  el.appendChild(resolve)
 
   return el
 }

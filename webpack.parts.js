@@ -25,7 +25,7 @@ module.exports.devServe = () => ({
 })
 
 module.exports.page = (
-  { title, url = '', chunks } = { title: 'hello~~~' }
+  { title, url = '', chunks, head='' } = { title: 'hello~~~' }
 ) => ({
   plugins: [
     new MiniHtmlWebpackPlugin({
@@ -33,8 +33,9 @@ module.exports.page = (
       chunks,
       filename: `${url && url + '/'}index.html`,
       context: {
-        title
-      }
+        title,
+        head
+      },
     })
   ]
 })

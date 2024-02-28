@@ -24,13 +24,27 @@ const commonConfig = merge([
       assetModuleFilename: 'asset.[name].[contenthash][ext][query]'
     }
   },
-  parts.page(),
+  parts.page({
+    head: `<script
+    src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>`}),
   parts.extractCSS({ loaders: [parts.autoprefixer(), parts.tailwind()] }),
   parts.loadImages({ limit: 7281 }),
   parts.loadFont(),
   parts.loadJS(),
   parts.setEnvVariable({ key: 'ENV', value: 'xixi' }, mode),
-  parts.bundleSpliting()
+  parts.bundleSpliting(),
+  {
+    resolve: {
+      alias: {
+        utils: path.resolve(__dirname, 'src', 'utils')
+      }
+    }
+  },
+  {
+    externals: { jquery: "jquery" }
+  }
 ])
 
 const productionConfig = merge([
