@@ -53,5 +53,20 @@ export default (text = ENV) => {
   env.innerHTML = store
   el.appendChild(env)
 
+  const req = require.context('./pages', true, /\.json$/)
+  console.log(
+    req,
+    req.keys(),
+    req.id,
+    req.resolve,
+    req.resolve(req.keys()[0]),
+    req(req.keys()[0])
+  )
+
+  const lang = 'zh'
+  import(`./locale/${lang}.json`).then((module) => {
+    console.log(module)
+  })
+
   return el
 }
